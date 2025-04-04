@@ -10,10 +10,14 @@ app.use(cors({
 }));
 app.use(express.json());
 
-
 const validateMCPUrl = (url) => {
   return url.match(/^https:\/\/smithery\.ai\/server(@|\/@)[\w-]+\/[\w-]+$/);
 };
+
+// ✅ Add this root route to fix "Cannot GET /" issue
+app.get("/", (req, res) => {
+  res.send("MCP Backend is running!");
+});
 
 // Endpoint
 app.post('/api/test-mcp', async (req, res) => {
