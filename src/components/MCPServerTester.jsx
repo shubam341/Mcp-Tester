@@ -13,9 +13,12 @@ const MCPServerTester = () => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-    
+  
     try {
-      const response = await axios.post('/api/test-mcp', { mcpUrl });
+      const response = await axios.post(
+        'https://mcp-backend-ebye.onrender.com/api/test-mcp',
+        { mcpUrl }
+      );
       setResults(response.data);
     } catch (err) {
       setError({
@@ -26,10 +29,12 @@ const MCPServerTester = () => {
           url: err.config?.url
         }, null, 2)
       });
-    } finally {
+    }
+    finally {
       setIsLoading(false);
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-blue-50 px-6 py-12">
