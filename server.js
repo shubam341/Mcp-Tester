@@ -13,7 +13,7 @@ app.use(cors({
     'https://mcp-tester-six.vercel.app'
   ],
   methods: ['GET', 'POST'],
-  credentials: false // No need for cookies unless using sessions/auth
+  credentials: true // No need for cookies unless using sessions/auth
 }));
 
 // ✅ MCP URL validation
