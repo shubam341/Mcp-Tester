@@ -5,11 +5,9 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://mcp-tester-fvsap92hn-shubam-choudharys-projects.vercel.app'
-  ],
-  methods: ['GET', 'POST']
+  origin: ['http://localhost:3000', 'https://mcp-tester-six.vercel.app'],
+  methods: ['GET', 'POST'],
+  credentials: true
 }));
 use(express.json());
 

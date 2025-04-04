@@ -1,4 +1,6 @@
 {
+  "homepage": "https://your-vercel-site-name.vercel.app",
+
   "name": "mcp-tester-tailwind",
   "version": "1.0.0",
   "private": true,
