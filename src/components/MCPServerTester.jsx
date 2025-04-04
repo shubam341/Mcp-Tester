@@ -16,9 +16,10 @@ const MCPServerTester = () => {
   
     try {
       const response = await axios.post(
-        'https://mcp-backend-ebye.onrender.com/api/test-mcp',
+        `${process.env.REACT_APP_API_URL}/api/test-mcp`,
         { mcpUrl }
       );
+      
       setResults(response.data);
     } catch (err) {
       setError({
