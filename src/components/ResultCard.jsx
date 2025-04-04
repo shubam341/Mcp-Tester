@@ -25,7 +25,7 @@ const ResultCard = ({
       </div>
       {isMCPServer && (
         <span className="px-2 py-1 text-xs font-semibold rounded bg-blue-200 text-blue-900">
-          ✅ MCP Verified
+          MCP Verified
         </span>
       )}
     </div>
