@@ -16,7 +16,7 @@ const validateMCPUrl = (url) => {
 };
 
 app.get("/", (req, res) => {
-  res.send("✅ MCP Backend is Live!");
+  res.send(" MCP Backend is Live!");
 });
 
 app.post('/api/test-mcp', async (req, res) => {
@@ -25,7 +25,7 @@ app.post('/api/test-mcp', async (req, res) => {
   if (!validateMCPUrl(mcpUrl)) {
     return res.status(400).json({
       success: false,
-      message: '❌ Invalid MCP URL format',
+      message: ' Invalid MCP URL format',
       example: 'https://smithery.ai/server@smithery-ai/server-sequential-thinking'
     });
   }
@@ -43,17 +43,17 @@ app.post('/api/test-mcp', async (req, res) => {
     res.json({
       success: true,
       isMCPServer: true,
-      message: '✅ MCP server validated successfully',
+      message: ' MCP server validated successfully',
       details: response.data,
       testedAt: new Date().toISOString()
     });
 
   } catch (error) {
-    console.error("❌ MCP Test Error:", error.message);
+    console.error(" MCP Test Error:", error.message);
 
     res.status(500).json({
       success: false,
-      message: '❌ MCP Server Test Failed',
+      message: ' MCP Server Test Failed',
       details: {
         error: error.message,
         statusCode: error.response?.status,
@@ -65,5 +65,5 @@ app.post('/api/test-mcp', async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 MCP Backend running on port ${PORT}`);
+  console.log(` MCP Backend running on port ${PORT}`);
 });
