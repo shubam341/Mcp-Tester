@@ -15,6 +15,10 @@ const validateMCPUrl = (url) => {
   return /^https:\/\/smithery\.ai\/server(@|\/@)[\w-]+\/[\w-]+$/.test(url);
 };
 
+app.get("/", (req, res) => {
+  res.send("✅ MCP Backend is Live!");
+});
+
 app.post('/api/test-mcp', async (req, res) => {
   const { mcpUrl } = req.body;
 
@@ -27,15 +31,16 @@ app.post('/api/test-mcp', async (req, res) => {
   }
 
   try {
+    // Actual POST to MCP URL with test payload
     const response = await axios.post(mcpUrl, {
-      messages: [{ role: 'user', content: 'Hello from MCP tester!' }]
+      messages: [{ role: 'user', content: 'Hello from MCP Tester' }]
     }, {
       headers: {
         'Content-Type': 'application/json'
       }
     });
 
-    return res.json({
+    res.json({
       success: true,
       isMCPServer: true,
       message: '✅ MCP server validated successfully',
@@ -44,9 +49,9 @@ app.post('/api/test-mcp', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('MCP Server Error:', error.response?.data || error.message);
+    console.error("❌ MCP Test Error:", error.message);
 
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       message: '❌ MCP Server Test Failed',
       details: {
@@ -56,10 +61,6 @@ app.post('/api/test-mcp', async (req, res) => {
       }
     });
   }
-});
-
-app.get('/', (req, res) => {
-  res.send('✅ MCP Backend is Live!');
 });
 
 const PORT = process.env.PORT || 5000;
