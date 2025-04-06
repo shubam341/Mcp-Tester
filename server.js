@@ -1,33 +1,4 @@
-﻿const express = require('express');
-const axios = require('axios');
-const cors = require('cors');
-const app = express();
-
-
-app.use(express.json());
-
-
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://mcp-tester-six.vercel.app'
-  ],
-  methods: ['GET', 'POST'],
-  credentials: true 
-}));
-
-
-const validateMCPUrl = (url) => {
-  return /^https:\/\/smithery\.ai\/server(@|\/@)[\w-]+\/[\w-]+$/.test(url);
-};
-
-
-app.get("/", (req, res) => {
-  res.send(" MCP Backend is running!");
-});
-
-
-app.post('/api/test-mcp', async (req, res) => {
+﻿app.post('/api/test-mcp', async (req, res) => {
   try {
     const { mcpUrl } = req.body;
 
@@ -39,7 +10,7 @@ app.post('/api/test-mcp', async (req, res) => {
       });
     }
 
-    // ⛓️ Real API Call
+    // Real API Call
     const response = await axios.post(mcpUrl, {
       input: "test"
     });
@@ -63,11 +34,4 @@ app.post('/api/test-mcp', async (req, res) => {
       }
     });
   }
-});
-
-
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 MCP Backend running on port ${PORT}`);
 });
