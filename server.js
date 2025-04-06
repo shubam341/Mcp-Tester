@@ -39,18 +39,16 @@ app.post('/api/test-mcp', async (req, res) => {
       });
     }
 
-    
-    const mockResponse = {
-      mcp_version: "1.0.0",
-      capabilities: ["sequential_thinking"],
-      status: "active"
-    };
+    // ⛓️ Real API Call
+    const response = await axios.post(mcpUrl, {
+      input: "test"
+    });
 
     res.json({
       success: true,
       isMCPServer: true,
       message: 'MCP server validated successfully',
-      details: mockResponse,
+      details: response.data,
       testedAt: new Date().toISOString()
     });
 
@@ -66,6 +64,7 @@ app.post('/api/test-mcp', async (req, res) => {
     });
   }
 });
+
 
 
 const PORT = process.env.PORT || 5000;
